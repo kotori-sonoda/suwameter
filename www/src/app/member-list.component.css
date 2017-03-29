@@ -1,0 +1,17 @@
+.member-icon {
+    padding: 4px;
+}
+
+.member-count {
+    font-size: 26pt;
+}
+
+.member-name {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.loading {
+    color: red;
+    text-align: center;
+}

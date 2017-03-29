@@ -1,0 +1,40 @@
+<h2 *ngIf="loading" class="loading">Now Loading...待っててくれるかい？きっといつかは読み込めるって</h2>
+<div class="list-group">
+    <a *ngFor="let member of members" routerLink="/photos/{{member.name}}" class="list-group-item"><img src="../img/{{member.name}}.jpg" width="50" height="50" class="member-icon"><span class="member-name">{{member.displayName}}</span><span class="badge member-count">{{member.count}}</span></a>
+</div>
+<div *ngIf="errorMessage">{{errorMessage}}</div>
+<hr>
+<div>
+    <h2>仕組み</h2>
+    <ul>
+        <li>Twitterから一定時間毎にすわわの画像を雑に検索します</li>
+        <li>あらかじめ学習させたAqours9人のうち画像に誰が写っているかをAIで判定します</li>
+        <li>すわわ以外の8人に対して、すわわと一緒に写っている画像の枚数を集計します</li>
+        <li>一緒に写っている枚数が多いほどすわわと仲良しと判断します</li>
+        <li>ハグしてる写真への重み付けとかは特にありません</li>
+    </ul>
+    <h2>もうちょい詳しい仕組み</h2>
+    <ul>
+        <li>Twitterからの検索ワードは「すわわ」「諏訪ななか」「suwa nanaka」で3回検索してます。OR検索何度やってもうまくいかず</li>
+        <li>初期データとして過去1000件の画像付きPostからの認識結果を使用し、2時間ごとに差分を処理して自動更新しています</li>
+        <li>AIはMicrosoft Cognitive ServiceのFace APIを使ってます</li>
+        <li>サーバはPythonとfalconとgunicorn、フロントエンドは無駄にAngularです</li>
+    </ul>
+    <h2>API</h2>
+    <a href="http://suwameter.sato-t.net:8000/members">http://suwameter.sato-t.net:8000/members</a>
+    <p>使い方は察してください</p>
+    <h2>TODO</h2>
+    <ul>
+        <li>すわわだけじゃなく全メンバーの組合せ72通りの仲良し度算出して仲良しマップ作りたい</li>
+        <li>IDとかパスワードとかキーとかの直書きやめてソース公開したい</li>
+    </ul>
+    <h2>注意事項</h2>
+    <ul>
+        <li>信憑性？何それ食えるの？</li>
+        <li>画像一覧見ればわかる通り誤認識がわりとあります。そのうち判定強化します</li>
+        <li>スタッフやキャストに凸らない</li>
+        <li>F5連打とかしない。サーバのメモリはわずか768MBでWordPressと共存です</li>
+    </ul>
+    <h2>連絡先</h2>
+    <p>ご意見ご要望クレームなどはTwitter/<a href="https://twitter.com/yazin">@yazin</a>まで</p>
+</div>
