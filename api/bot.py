@@ -28,7 +28,7 @@ try:
 
 すわわがハグしたい人メーター
 http://suwameter.sato-t.net/
-#lovelive #lovelive_shushine
+#lovelive #lovelive_sunshine
 ''' % (rows[0][0].encode('utf8'), rows[0][1], rows[1][0].encode('utf8'), rows[1][1], rows[2][0].encode('utf8'), rows[2][1])
 finally:
     cur.close()
