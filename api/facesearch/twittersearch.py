@@ -40,6 +40,10 @@ def query_twitter(kwd, count, times, since_id):
 
     for i in range(1, times):
         res = json.loads(session.get(url, params = {'q':'%s filter:images' % kwd, 'count':count, 'result_type':'recent', 'include_entities':'true', 'since_id':since_id, 'max_id':min_id}).text)
+
+        if len(res['statuses']) == 0:
+            return links, max_id
+
         min_id = res['statuses'][0]['id']
         for tw in res['statuses']:
             if tw ['id'] > max_id:
@@ -65,5 +69,4 @@ def identify(links, person_group):
         if len(people_found) > 0:
             for p in people_found:
                 personmap[p].append(link)
-        time.sleep(7)
     return personmap
