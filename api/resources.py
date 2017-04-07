@@ -65,6 +65,33 @@ class PhotosResource:
         resp.body = json.dumps(msg)
         resp.append_header('Access-Control-Allow-Origin', '*')
 
+class SuwawaResource:
+    def on_get(self, req, resp):
+        conn = mysql.connector.connect(
+            host=dbconf.HOST,
+            port=dbconf.PORT,
+            db=dbconf.DB_NAME,
+            user=dbconf.DB_USER,
+            password=dbconf.DB_PASSWORD,
+            charset=dbconf.DB_CHARSET
+        )
+        cur = conn.cursor(buffered=True)
+        try:
+            cur.execute('select url from suwawa')
+            rows = cur.fetchall()
+        finally:
+            cur.close()
+            conn.close()
+
+        photos = [row[0] for row in rows]
+
+        msg = {
+            'photos': photos
+        }
+        resp.body = json.dumps(msg)
+        resp.append_header('Access-Control-Allow-Origin', '*')
+
 api = falcon.API()
 api.add_route('/members', MembersResource())
 api.add_route('/photos/{name}', PhotosResource())
+api.add_route('/suwawa', SuwawaResource())
