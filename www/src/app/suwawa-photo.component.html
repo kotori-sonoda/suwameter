@@ -1,0 +1,11 @@
+<h2 *ngIf="loading" class="loading">Now Loading...待っててくれるかい？きっといつかは読み込めるって</h2>
+<div class="row" *ngFor="let row of photoUrls">
+    <div class="col-xs-6 col-md-3" *ngFor="let photo of row">
+        <a href="{{photo}}" class="thumbnail">
+            <img src="{{photo}}">
+        </a>
+    </div>
+</div>
+<div>
+    <button class="btn button-default" (click)="goBack()">戻る</button>
+</div>

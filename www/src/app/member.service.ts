@@ -13,6 +13,7 @@ import { Member } from './member';
 export class MemberService {
     private membersUrl = 'http://suwameter.sato-t.net:8000/members';
     private photosUrl = 'http://suwameter.sato-t.net:8000/photos/';
+    private suwawaUrl = 'http://suwameter.sato-t.net:8000/suwawa';
 
     constructor(private http: Http) {}
 
@@ -24,6 +25,12 @@ export class MemberService {
 
     getMemberPhotos(name: string): Observable<string[]> {
         return this.http.get(this.photosUrl + name)
+                .map(this.extractPhotos)
+                .catch(this.handleError);
+    }
+
+    getSuwawaPhotos(): Observable<string[]> {
+        return this.http.get(this.suwawaUrl)
                 .map(this.extractPhotos)
                 .catch(this.handleError);
     }

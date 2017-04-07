@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
 import { MemberListComponent } from './member-list.component';
 import { MemberPhotoComponent } from './member-photo.component';
+import { SuwawaPhotoComponent } from './suwawa-photo.component';
 import { MemberService } from './member.service';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MemberService } from './member.service';
   declarations: [
     AppComponent,
     MemberListComponent,
-    MemberPhotoComponent
+    MemberPhotoComponent,
+    SuwawaPhotoComponent
     ],
   providers:    [ MemberService ],
   bootstrap:    [ AppComponent ]
