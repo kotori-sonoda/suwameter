@@ -132,4 +132,20 @@ $ ./clawler.py init
 ```
 
 パラメータに`init`を指定すると初期データ用に1000件（くらい）、それ以外を適当に指定すると前回取得からの差分を取得します。
-cronには`./clawler.py update`などと書いておきます。
+cronには`~/suwameter/api/clawler.py update`などと書いておきます。
+
+### bot
+
+crontabに`~/suwameter/api/bot.py`のように書いておくと適当にPostします。
+
+```planintext
+すわわがハグしたいのは・・・
+
+1位 しゅかしゅー: 90
+2位 あいにゃ: 84
+3位 きんぐ: 71
+
+すわわがハグしたい人メーター
+suwameter.sato-t.net
+#lovelive #lovelive_sunshine
+```
